@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
+
 import './App.css';
+import RewardGallery from "./RewardGallery";
+import {Reward} from "./Reward";
+import axios, {AxiosResponse} from "axios";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [rewards, setRewards] = useState<Reward[]>([])
+
+    useEffect(() => {
+        loadAllRewards()
+    }, [])
+
+    function loadAllRewards() {
+        axios.get("/api/rewards")
+            .then((response: AxiosResponse<any>) => {
+                setRewards(response.data)
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+    }
+
+    return (
+        <div className="App">
+            <header className="App-header">
+                <p>"Here is the Header"</p>
+            </header>
+            <RewardGallery rewards={rewards}/>
+        </div>
+    );
 }
 
 export default App;
