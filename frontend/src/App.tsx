@@ -4,6 +4,8 @@ import './App.css';
 import RewardGallery from "./RewardGallery";
 import {Reward} from "./Reward";
 import axios, {AxiosResponse} from "axios";
+import MainBar from "./MainBar";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 function App() {
     const [rewards, setRewards] = useState<Reward[]>([])
@@ -23,12 +25,16 @@ function App() {
     }
 
     return (
-        <div className="App">
-            <header className="App-header">
-                <p>"Here is the Header"</p>
-            </header>
-            <RewardGallery rewards={rewards}/>
-        </div>
+        <BrowserRouter>
+            <div className="App">
+                <header className="App-header">
+                    <MainBar/>
+                </header>
+                <Routes>
+                    <Route path="/"
+                           element={<RewardGallery rewards={rewards}/>}/>
+                </Routes></div>
+        </BrowserRouter>
     );
 }
 
