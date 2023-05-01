@@ -8,23 +8,27 @@ type AddRewardProps = {
     addReward: (newReward: NewReward) => void
 }
 
-export default function AddRecipe(props: AddRewardProps) {
+export default function AddReward(props: AddRewardProps) {
     const [name, setName] = useState<string>("")
     const [description, setDescription] = useState<string>("")
     const [price, setPrice] = useState<number>(0)
     const navigate = useNavigate()
 
-    function onSubmitNewReward(event: FormEvent<HTMLFormElement>) {
+    function onSaveReward(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         const newReward: NewReward = {name: name, description: description, price: price}
         axios.post("/api/rewards/add", newReward)
+            .then((response) => {
+                props.addReward(response.data);
+                navigate("/")
+            })
             .catch(() => console.error("post on /api/rewards/add not successful"))
-        navigate("/")
     }
+
 
     return (
         <div>
-            <form onSubmit={onSubmitNewReward}>
+            <form onSubmit={onSaveReward}>
                 <TextField
                     helperText="name of your reward"
                     id="rewardName"
