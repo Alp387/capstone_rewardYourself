@@ -2,7 +2,6 @@ import {FormEvent, useState} from "react";
 import {NewReward} from "./Reward";
 import {Button, TextField} from "@mui/material";
 import {useNavigate} from "react-router-dom";
-import axios from "axios";
 
 type AddRewardProps = {
     addReward: (newReward: NewReward) => void
@@ -14,7 +13,7 @@ export default function AddRecipe(props: AddRewardProps) {
     const [price, setPrice] = useState<number>(0)
     const navigate = useNavigate()
 
-    function onSaveReward(event: FormEvent<HTMLFormElement>) {
+    function onSubmitNewReward(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         const newReward: NewReward = {name: name, description: description, price: price}
         axios.post("/api/rewards/add", newReward)
@@ -24,7 +23,7 @@ export default function AddRecipe(props: AddRewardProps) {
 
     return (
         <div>
-            <form onSubmit={onSaveReward}>
+            <form onSubmit={onSubmitNewReward}>
                 <TextField
                     helperText="name of your reward"
                     id="rewardName"
@@ -45,17 +44,20 @@ export default function AddRecipe(props: AddRewardProps) {
                     }
                     }
                 />
-                {/* <TextField
-                        helperText="price of your reward"
-                        id="rewardPrice"
-                        label="Price"
-                        value={price}
-                        onChange={(event)=>{setPrice(event.target.)}
-                        }
-                    />*/}
-                <Button key="RewardAddButton">Add Reward</Button>
+                {<TextField
+                    helperText="price of your reward"
+                    id="rewardPrice"
+                    label="Price"
+                    type="number"
+                    value={price}
+                    onChange={(event) => {
+                        const value = Number(event.target.value); // convert to a number
+                        setPrice(value);
+                    }
+                    }
+                />}
+                <Button type="submit" key="RewardAddButton">Add Reward</Button>
             </form>
         </div>
     )
-
 }
