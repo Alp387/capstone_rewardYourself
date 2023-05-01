@@ -2,6 +2,7 @@ import {FormEvent, useState} from "react";
 import {NewReward} from "./Reward";
 import {Button, TextField} from "@mui/material";
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
 
 type AddRewardProps = {
     addReward: (newReward: NewReward) => void
