@@ -15,7 +15,7 @@ public class RewardController {
     @GetMapping
     public List<Reward> getAll() {return rewardService.getAll();}
 
-    @PostMapping
+    @PostMapping("/add")
     public Reward addReward(@RequestBody Reward reward){return rewardService.addReward(reward);}
 
 }

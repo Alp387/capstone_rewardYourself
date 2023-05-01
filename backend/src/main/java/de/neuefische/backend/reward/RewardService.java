@@ -18,7 +18,7 @@ public class RewardService {
     public Reward addReward(Reward reward) {
 
         Reward rewardToAdd = new Reward(reward.rewardId(), reward.name(), reward.description(), reward.price(),
-                reward.savingAllocated(), reward.statusOpen(), LocalDateTime.now());
+                0, reward.statusOpen(), LocalDateTime.now());
         return rewardRepoInterface.save(rewardToAdd);
     }
 }
