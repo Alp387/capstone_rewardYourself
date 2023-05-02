@@ -46,7 +46,7 @@ function App() {
                                     <div className="button-container">
                                         <Button
                                             size="small"
-                                            variant="contained"
+                                            variant="outlined"
                                             href="/api/rewards/add"
                                         >
                                             New Reward
