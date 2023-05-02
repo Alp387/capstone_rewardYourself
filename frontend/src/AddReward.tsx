@@ -14,7 +14,7 @@ export default function AddReward(props: AddRewardProps) {
     const [price, setPrice] = useState<number>(0)
     const navigate = useNavigate()
 
-    function onSaveReward(event: FormEvent<HTMLFormElement>) {
+    function onSaveReward2(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         const newReward: NewReward = {name: name, description: description, price: price}
         axios.post("/api/rewards/add", newReward)
@@ -23,6 +23,14 @@ export default function AddReward(props: AddRewardProps) {
                 navigate("/")
             })
             .catch(() => console.error("post on /api/rewards/add not successful"))
+    }
+    function onSaveReward(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault()
+        const newReward: NewReward = {name: name, description: description, price: price}
+
+                props.addReward(newReward);
+                navigate("/")
+
     }
 
 
