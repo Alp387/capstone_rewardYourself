@@ -2,7 +2,6 @@ import {FormEvent, useState} from "react";
 import {NewReward} from "./Reward";
 import {Button, TextField} from "@mui/material";
 import {useNavigate} from "react-router-dom";
-import axios from "axios";
 
 type AddRewardProps = {
     addReward: (newReward: NewReward) => void
@@ -14,22 +13,11 @@ export default function AddReward(props: AddRewardProps) {
     const [price, setPrice] = useState<number>(0)
     const navigate = useNavigate()
 
-    function onSaveReward2(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault()
-        const newReward: NewReward = {name: name, description: description, price: price}
-        axios.post("/api/rewards/add", newReward)
-            .then((response) => {
-                props.addReward(response.data);
-                navigate("/")
-            })
-            .catch(() => console.error("post on /api/rewards/add not successful"))
-    }
     function onSaveReward(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         const newReward: NewReward = {name: name, description: description, price: price}
-
-                props.addReward(newReward);
-                navigate("/")
+        props.addReward(newReward);
+        navigate("/")
 
     }
 
