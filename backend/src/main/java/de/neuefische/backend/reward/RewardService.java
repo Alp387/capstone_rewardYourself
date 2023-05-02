@@ -21,4 +21,8 @@ public class RewardService {
                 0, true, LocalDateTime.now());
         return rewardRepoInterface.save(rewardToAdd);
     }
+
+    public Reward getById(String id) {
+        return rewardRepoInterface.findById(id).orElseThrow();
+    }
 }
