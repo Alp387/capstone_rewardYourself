@@ -17,7 +17,7 @@ public class RewardController {
         return rewardService.getAll();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Reward getById(@PathVariable String id) {
         return rewardService.getById(id);
     }

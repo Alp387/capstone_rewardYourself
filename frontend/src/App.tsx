@@ -7,6 +7,7 @@ import MainBar from './MainBar';
 import AddReward from './AddReward';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {Button} from '@mui/material';
+import RewardDetail from "./RewardDetail";
 
 function App() {
     const [rewards, setRewards] = useState<Reward[]>([]);
@@ -30,7 +31,7 @@ function App() {
         axios
             .post('/api/rewards/add', newReward)
             .then(() => getAllRewards())
-            .catch(() => console.error('post on /api/rewards/add not successful'));
+            .catch(() => console.error('post successful'));
     }
 
     return (
@@ -47,8 +48,7 @@ function App() {
                                         <Button
                                             size="small"
                                             variant="outlined"
-                                            href="/api/rewards/add"
-                                        >
+                                            href="/rewards/add">
                                             New Reward
                                         </Button>
                                     </div>
@@ -57,14 +57,16 @@ function App() {
                             }
                         />
                         <Route
-                            path="/api/rewards/add"
+                            path="/rewards/add"
                             element={<AddReward addReward={addReward}/>}
                         />
+                        <Route path='/rewards/:id' element={<RewardDetail/>} />
                     </Routes>
                 </div>
             </div>
         </BrowserRouter>
-    );
+    )
+        ;
 }
 
 export default App;
