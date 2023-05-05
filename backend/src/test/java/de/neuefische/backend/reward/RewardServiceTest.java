@@ -11,8 +11,11 @@ import org.springframework.test.annotation.DirtiesContext;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @AutoConfigureMockMvc
@@ -22,16 +25,18 @@ class RewardServiceTest {
     private RewardService rewardService;
     @Mock
     private RewardRepoInterface rewardRepoInterfaceMock;
+    @Mock
+    private TimeUtilsService timeUtilsService;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        rewardService = new RewardService(rewardRepoInterfaceMock);
+        rewardService = new RewardService(rewardRepoInterfaceMock, timeUtilsService);
     }
 
 
     @Test
-    void testGetAllRewards() {
+    void getAllRewards() {
         //GIVEN
         Reward reward1 = new Reward("1", "TV", "60 inch curved", 500.0,
                 0.0, true, LocalDateTime.now());
@@ -43,7 +48,70 @@ class RewardServiceTest {
         List<Reward> actualRewards = rewardService.getAll();
         //THEN
         assertEquals(actualRewards, expectedRewards);
-
     }
 
+    @DirtiesContext
+    @Test
+    void addReward() {
+        //GIVEN
+        LocalDateTime fixedDateTime = LocalDateTime.parse("2023-05-05T15:30:06.000000");
+        Reward expectedReward = new Reward("1", "TV", "60 inch curved", 500.0,
+                0.0, true, fixedDateTime);
+        when(timeUtilsService.addTimeStamp()).thenReturn(fixedDateTime);
+        when(rewardRepoInterfaceMock.save(expectedReward)).thenReturn(expectedReward);
+
+
+        //WHEN
+        Reward actualReward = rewardService.addReward(expectedReward);
+        //THEN
+        verify(rewardRepoInterfaceMock).save(expectedReward);
+        assertEquals(expectedReward, actualReward);
+    }
+
+    @DirtiesContext
+    @Test
+    void addRewardSuccessful() {
+        // GIVEN
+        LocalDateTime fixedDateTime = LocalDateTime.parse("2023-05-05T15:30:06.000000");
+        Reward rewardToAdd = new Reward("1", "TV", "60 inch curved",
+                500.0, 0.0, true, fixedDateTime);
+        when(rewardRepoInterfaceMock.save(rewardToAdd)).thenReturn(rewardToAdd);
+        when(timeUtilsService.addTimeStamp()).thenReturn(fixedDateTime);
+        // WHEN
+        Reward actualReward = rewardService.addReward(rewardToAdd);
+        // THEN
+        verify(rewardRepoInterfaceMock).save(rewardToAdd);
+        assertNotNull(actualReward);
+    }
+
+    @DirtiesContext
+    @Test
+    void getRewardById_shouldReturnExistingReward() {
+        //GIVEN
+        Reward expectedReward = new Reward("1", "TV", "60 inch curved", 500.0,
+                0.0, true, LocalDateTime.now());
+        when(rewardRepoInterfaceMock.findById(expectedReward.id())).thenReturn(Optional.of(expectedReward));
+        //THEN
+        Reward actualReward = rewardService.getById("1");
+        verify(rewardRepoInterfaceMock).findById("1");
+        assertEquals(expectedReward, actualReward);
+    }
+
+
+    @DirtiesContext
+    @Test
+    void getByIdShouldReturnErrorWhenIdNotExists() {
+        //GIVEN
+        when(rewardRepoInterfaceMock.findById("x")).thenThrow(NoSuchElementException.class);
+
+        //WHEN
+        try {
+            rewardService.getById("x");
+            fail();
+        }
+        //THEN
+        catch (NoSuchElementException Ignored) {
+            verify(rewardRepoInterfaceMock).findById("x");
+        }
+    }
 }
