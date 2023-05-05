@@ -57,16 +57,18 @@ function App() {
                             }
                         />
                         <Route
+                            path="/rewards"
+                            element={<RewardGallery rewards={rewards}/>}/>
+                        <Route
                             path="/rewards/add"
                             element={<AddReward addReward={addReward}/>}
                         />
-                        <Route path='/rewards/:id' element={<RewardDetail/>} />
+                        <Route path='/rewards/:id' element={<RewardDetail/>}/>
                     </Routes>
                 </div>
             </div>
         </BrowserRouter>
-    )
-        ;
+    );
 }
 
 export default App;
