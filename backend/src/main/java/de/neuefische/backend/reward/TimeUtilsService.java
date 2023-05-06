@@ -10,4 +10,7 @@ public class TimeUtilsService {
     public LocalDateTime addTimeStamp() {
         return LocalDateTime.now();
     }
+    public LocalDateTime transferTimeStamp (String oldTimeStamp){
+        return LocalDateTime.parse(oldTimeStamp);
+    }
 }
