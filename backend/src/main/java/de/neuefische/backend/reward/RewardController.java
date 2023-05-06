@@ -1,7 +1,9 @@
 package de.neuefische.backend.reward;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -23,9 +25,17 @@ public class RewardController {
     }
 
     @PostMapping("/add")
-    public Reward addReward(@RequestBody Reward reward) {
-        return rewardService.addReward(reward);
+    public Reward add(@RequestBody Reward reward) {
+        return rewardService.add(reward);
     }
 
-
+    @PutMapping(path = {"/{id}/update", "{id}"})
+    public Reward update(@PathVariable String id, @RequestBody Reward updatedReward) {
+        if (updatedReward.id().equals(id)) {
+            return rewardService.update(updatedReward);
+        } else {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                            "Reward with id -" + updatedReward.id() + "- does not exist");
+        }
+    }
 }

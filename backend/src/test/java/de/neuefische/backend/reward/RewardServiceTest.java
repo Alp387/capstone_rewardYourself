@@ -62,7 +62,7 @@ class RewardServiceTest {
 
 
         //WHEN
-        Reward actualReward = rewardService.addReward(expectedReward);
+        Reward actualReward = rewardService.add(expectedReward);
         //THEN
         verify(rewardRepoInterfaceMock).save(expectedReward);
         assertEquals(expectedReward, actualReward);
@@ -78,7 +78,7 @@ class RewardServiceTest {
         when(rewardRepoInterfaceMock.save(rewardToAdd)).thenReturn(rewardToAdd);
         when(timeUtilsService.addTimeStamp()).thenReturn(fixedDateTime);
         // WHEN
-        Reward actualReward = rewardService.addReward(rewardToAdd);
+        Reward actualReward = rewardService.add(rewardToAdd);
         // THEN
         verify(rewardRepoInterfaceMock).save(rewardToAdd);
         assertNotNull(actualReward);
