@@ -2,7 +2,7 @@ package de.neuefische.backend.reward;
 
 import org.springframework.data.annotation.Id;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 public record Reward(
         @Id
@@ -12,6 +12,6 @@ public record Reward(
         double price,
         double savingAllocated,
         boolean statusOpen,
-        LocalDateTime rewardCreated
+        OffsetDateTime rewardCreated
 ) {
 }

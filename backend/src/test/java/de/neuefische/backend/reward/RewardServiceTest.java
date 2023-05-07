@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -39,9 +40,9 @@ class RewardServiceTest {
     void getAllRewards() {
         //GIVEN
         Reward reward1 = new Reward("1", "TV", "60 inch curved", 500.0,
-                0.0, true, LocalDateTime.now());
+                0.0, true, OffsetDateTime.now());
         Reward reward2 = new Reward("2", "E-Bike", "very sexy", 3500.0,
-                0.0, true, LocalDateTime.now());
+                0.0, true, OffsetDateTime.now());
         List<Reward> expectedRewards = Arrays.asList(reward1, reward2);
         //WHEN
         when(rewardRepoInterfaceMock.findAll()).thenReturn(expectedRewards);
@@ -54,10 +55,10 @@ class RewardServiceTest {
     @Test
     void addReward() {
         //GIVEN
-        LocalDateTime fixedDateTime = LocalDateTime.parse("2023-05-05T15:30:06.000000");
+        OffsetDateTime fixedDateTime = OffsetDateTime.parse("2007-12-03T10:15:30+01:00");
         Reward expectedReward = new Reward("1", "TV", "60 inch curved", 500.0,
                 0.0, true, fixedDateTime);
-        when(timeUtilsService.addTimeStamp()).thenReturn(fixedDateTime);
+        when(timeUtilsService.addNewTimeStamp()).thenReturn(fixedDateTime);
         when(rewardRepoInterfaceMock.save(expectedReward)).thenReturn(expectedReward);
 
 
@@ -72,11 +73,11 @@ class RewardServiceTest {
     @Test
     void addRewardSuccessful() {
         // GIVEN
-        LocalDateTime fixedDateTime = LocalDateTime.parse("2023-05-05T15:30:06.000000");
+        OffsetDateTime fixedDateTime = OffsetDateTime.parse("2007-12-03T10:15:30+01:00");
         Reward rewardToAdd = new Reward("1", "TV", "60 inch curved",
                 500.0, 0.0, true, fixedDateTime);
         when(rewardRepoInterfaceMock.save(rewardToAdd)).thenReturn(rewardToAdd);
-        when(timeUtilsService.addTimeStamp()).thenReturn(fixedDateTime);
+        when(timeUtilsService.addNewTimeStamp()).thenReturn(fixedDateTime);
         // WHEN
         Reward actualReward = rewardService.add(rewardToAdd);
         // THEN
@@ -89,7 +90,7 @@ class RewardServiceTest {
     void getRewardById_shouldReturnExistingReward() {
         //GIVEN
         Reward expectedReward = new Reward("1", "TV", "60 inch curved", 500.0,
-                0.0, true, LocalDateTime.now());
+                0.0, true, OffsetDateTime.now());
         when(rewardRepoInterfaceMock.findById(expectedReward.id())).thenReturn(Optional.of(expectedReward));
         //THEN
         Reward actualReward = rewardService.getById("1");
