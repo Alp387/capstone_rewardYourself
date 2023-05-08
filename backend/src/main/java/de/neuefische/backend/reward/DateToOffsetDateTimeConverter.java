@@ -7,7 +7,7 @@ import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.Date;
 
-public class DateToOffsetDateTimeConverter implements Converter<Date, OffsetDateTime> {
+public class DateToOffsetDateTimeConverter implements Converter<OffsetDateTime,Date> {
 
     public OffsetDateTime convert(Date source){
         return source.toInstant().atOffset(ZoneOffset.UTC);

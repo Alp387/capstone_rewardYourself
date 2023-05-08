@@ -1,3 +1,4 @@
+/*
 package de.neuefische.backend.reward;
 
 import org.springframework.format.FormatterRegistry;
@@ -10,3 +11,4 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addConverter(new DateToOffsetDateTimeConverter());
     }
 }
+*/
