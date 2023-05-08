@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 public record Reward(
         @Id
-        String rewardId,
+        String id,
         String name,
         String description,
         double price,
