@@ -17,7 +17,7 @@ public class RewardService {
 
     public Reward add(Reward reward) {
         Reward rewardToAdd = new Reward(reward.id(), reward.name(), reward.description(), reward.price(),
-                0, true, timeUtilsService.addTimeStamp());
+                0, true, timeUtilsService.addNewTimeStamp());
         return rewardRepoInterface.save(rewardToAdd);
     }
 
@@ -32,15 +32,8 @@ public class RewardService {
                 updatedReward.price(),
                 updatedReward.savingAllocated(),
                 updatedReward.statusOpen(),
-                //take over old TimeStamp
-                timeUtilsService.transferTimeStamp(updatedReward.rewardCreated().toString()));
+                updatedReward.rewardCreated());
 
-        /* not sure right now if the save method overrides th old version
-        //delete old Reward from Database
-        rewardRepoInterface.delete(updatedReward);
-        */
-
-        //add new Reward to Database
         return rewardRepoInterface.save(updatedRewardToSave);
     }
 }
