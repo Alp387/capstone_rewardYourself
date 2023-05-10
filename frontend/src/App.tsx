@@ -8,6 +8,7 @@ import AddReward from './AddReward';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {Button} from '@mui/material';
 import RewardDetail from "./RewardDetail";
+import UpdateReward from "./UpdateReward";
 
 function App() {
     const [rewards, setRewards] = useState<Reward[]>([]);
@@ -64,6 +65,7 @@ function App() {
                             element={<AddReward addReward={addReward}/>}
                         />
                         <Route path='/rewards/:id' element={<RewardDetail/>}/>
+                        <Route path='/rewards/:id/update' element={<UpdateReward/>}/>
                     </Routes>
                 </div>
             </div>

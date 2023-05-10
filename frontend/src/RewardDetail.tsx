@@ -1,11 +1,15 @@
 import {useEffect, useState} from "react";
 import {Reward} from "./Reward";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
+import {Button} from "@mui/material";
+
+
 
 export default function RewardDetail() {
     const [reward, setReward] = useState<Reward>();
     const {id} = useParams<{ id: string }>();
+    const navigate = useNavigate()
 
     useEffect(() => {
         console.log("Prüfung ob id vorhanden")
@@ -25,7 +29,10 @@ export default function RewardDetail() {
     return (
         <div>
             {reward ? (
-                <div>
+                <div><Button size="small" onClick={() => {
+                    navigate('/rewards/' + reward.id + '/update')}}>
+                    Update Reward
+                </Button>
                     <h1>Name: {reward.name}</h1>
                     <p>Description: {reward.description}</p>
                     <p>Price: {reward.price}</p>
