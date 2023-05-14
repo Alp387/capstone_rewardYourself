@@ -18,6 +18,7 @@ public class RewardController {
     public List<Reward> getAll() {
         return rewardService.getAll();
     }
+
     @GetMapping("/{id}")
     public Reward getById(@PathVariable String id) {
         return rewardService.getById(id);
@@ -34,7 +35,12 @@ public class RewardController {
             return rewardService.update(updatedReward);
         } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                            "Reward with id -" + updatedReward.id() + "- does not exist");
+                    "Reward with id -" + updatedReward.id() + "- does not exist");
         }
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteReward(@PathVariable String id) {
+        rewardService.delete(id);
     }
 }
