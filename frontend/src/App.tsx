@@ -32,7 +32,14 @@ function App() {
         axios
             .post('/api/rewards/add', newReward)
             .then(() => getAllRewards())
-            .catch(() => console.error('post successful'));
+            .catch(() => console.error('post fail'));
+    }
+
+    function updateReward(rewardToUpdate: Reward) {
+        axios
+            .put(`/api/rewards/${rewardToUpdate.id}/update`, rewardToUpdate)
+            .then(() => getAllRewards())
+            .catch(() => console.error('update fail'))
     }
 
     return (
@@ -65,7 +72,7 @@ function App() {
                             element={<AddReward addReward={addReward}/>}
                         />
                         <Route path='/rewards/:id' element={<RewardDetail/>}/>
-                        <Route path='/rewards/:id/update' element={<UpdateReward/>}/>
+                        <Route path='/rewards/:id/update' element={<UpdateReward updateReward={updateReward}/>}/>
                     </Routes>
                 </div>
             </div>
