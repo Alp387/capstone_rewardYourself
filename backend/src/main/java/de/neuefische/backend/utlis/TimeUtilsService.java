@@ -1,4 +1,4 @@
-package de.neuefische.backend.reward;
+package de.neuefische.backend.utlis;
 
 import org.springframework.stereotype.Service;
 
