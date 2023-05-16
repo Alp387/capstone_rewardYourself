@@ -9,12 +9,16 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {Button} from '@mui/material';
 import RewardDetail from "./RewardDetail";
 import UpdateReward from "./UpdateReward";
+import HabitGallery from "./HabitGallery";
+import {Habit} from "./Habit";
 
 function App() {
     const [rewards, setRewards] = useState<Reward[]>([]);
+    const [habits, setHabits] = useState<Habit[]>([]);
 
     useEffect(() => {
         getAllRewards();
+        getAllHabits();
     }, []);
 
     function getAllRewards() {
@@ -26,6 +30,14 @@ function App() {
             .catch((error) => {
                 console.error(error);
             });
+    }
+
+    function getAllHabits() {
+        axios.get('/api/habits').then((response: AxiosResponse<any>) => {
+            setHabits(response.data);
+        }).catch((error) => {
+            console.error(error);
+        })
     }
 
     function addReward(newReward: NewReward) {
@@ -69,6 +81,7 @@ function App() {
                                         </Button>
                                     </div>
                                     <RewardGallery rewards={rewards}/>
+                                    <HabitGallery habits={habits}/>
                                 </>
                             }
                         />
