@@ -2,7 +2,7 @@ export type Habit = {
     id: string,
     name: string,
     description: string,
-    dailyReward: number,
+    dailySaving: number,
     startTime: Date,
     lastTimeCollected: Date,
     endTime: Date,
@@ -11,5 +11,5 @@ export type Habit = {
 export type NewHabit = {
     name: string,
     description: string,
-    dailyReward: number
+    dailySaving: number
 }
