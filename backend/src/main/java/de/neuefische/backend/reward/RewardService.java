@@ -36,4 +36,5 @@ public class RewardService {
 
         return rewardRepoInterface.save(updatedRewardToSave);
     }
+    public void delete(String id){ rewardRepoInterface.deleteById(id);}
 }

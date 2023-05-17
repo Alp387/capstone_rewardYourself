@@ -4,8 +4,10 @@ import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {Button} from "@mui/material";
 
-
-export default function RewardDetail() {
+type RewardDetailProps = {
+    deleteReward: (id: string) => void
+}
+export default function RewardDetail(props: RewardDetailProps) {
     const [reward, setReward] = useState<Reward>();
     const {id} = useParams<{ id: string }>();
     const navigate = useNavigate()
@@ -23,14 +25,26 @@ export default function RewardDetail() {
             console.log("Reward not found " + error);
         })
     }
+
+    function onDeleteButtonClick() {
+        if (reward) {
+            props.deleteReward(reward.id)
+        }
+        navigate('/')
+    }
+
     return (
         <div>
             {reward ? (
-                <div><Button size="small" onClick={() => {
-                    navigate('/rewards/' + reward.id + '/update', {state: reward})
-                }}>
-                    Update Reward
-                </Button>
+                <div>
+                    <Button size="small" onClick={() => {
+                        navigate('/rewards/' + reward.id + '/update', {state: reward})
+                    }}>
+                        Update Reward
+                    </Button>
+                    <Button size="small" onClick={() => onDeleteButtonClick()}>
+                        Delete Reward
+                    </Button>
                     <h1>Name: {reward.name}</h1>
                     <p>Description: {reward.description}</p>
                     <p>Price: {reward.price}</p>

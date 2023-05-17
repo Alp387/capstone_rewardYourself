@@ -42,6 +42,14 @@ function App() {
             .catch(() => console.error('update fail'))
     }
 
+    function deleteReward(id: string) {
+        axios.delete('/api/rewards/' + id)
+            .then(() => getAllRewards())
+            .catch(() => {
+                console.log("Failed to delete reward")
+            })
+    }
+
     return (
         <BrowserRouter>
             <div className="App">
@@ -65,13 +73,10 @@ function App() {
                             }
                         />
                         <Route
-                            path="/rewards"
-                            element={<RewardGallery rewards={rewards}/>}/>
-                        <Route
                             path="/rewards/add"
                             element={<AddReward addReward={addReward}/>}
                         />
-                        <Route path='/rewards/:id' element={<RewardDetail/>}/>
+                        <Route path='/rewards/:id' element={<RewardDetail deleteReward={deleteReward}/>}/>
                         <Route path='/rewards/:id/update' element={<UpdateReward updateReward={updateReward}/>}/>
                     </Routes>
                 </div>
