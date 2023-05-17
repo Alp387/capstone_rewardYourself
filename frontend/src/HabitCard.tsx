@@ -6,9 +6,9 @@ type HabitCardProps = {
 export default function HabitCard(props: HabitCardProps) {
     return (
         <div className="habit-card">
-            <p>Name: {props.habit.name}</p>
-            <p>Daily reward: {props.habit.dailyReward}</p>
-            <p>Last collection x hours ago</p>
+            <p>Name: {props.habit.name};
+            Daily reward: {props.habit.dailyReward};
+            Last collection x hours ago</p>
         </div>
     )
 }
