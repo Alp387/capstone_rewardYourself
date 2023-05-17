@@ -17,8 +17,14 @@ public class RewardService {
     }
 
     public Reward add(Reward reward) {
-        Reward rewardToAdd = new Reward(reward.id(), reward.name(), reward.description(), reward.price(),
-                0, true, timeUtilsService.addNewTimeStamp());
+        Reward rewardToAdd = new Reward(
+                reward.id(),
+                reward.name(),
+                reward.description(),
+                reward.price(),
+                0,
+                true,
+                timeUtilsService.addNewTimeStamp());
         return rewardRepoInterface.save(rewardToAdd);
     }
 
