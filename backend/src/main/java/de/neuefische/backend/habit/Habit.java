@@ -9,7 +9,7 @@ public record Habit(
         String id,
         String name,
         String description,
-        double dailyReward,
+        double dailySaving,
         OffsetDateTime startTime,
         OffsetDateTime lastTimeCollected,
         OffsetDateTime endTime,

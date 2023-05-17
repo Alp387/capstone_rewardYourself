@@ -14,4 +14,7 @@ public class HabitService {
         return habitRepoInterface.findAll();
     }
 
+    public Habit add(Habit habit) {
+        return habitRepoInterface.save(habit);
+    }
 }
