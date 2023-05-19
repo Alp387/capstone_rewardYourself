@@ -13,6 +13,7 @@ import HabitGallery from "./HabitGallery";
 import {Habit, NewHabit} from "./Habit";
 import AddHabit from "./AddHabit";
 import HabitDetail from "./HabitDetail";
+import UpdateHabit from "./UpdateHabit";
 
 function App() {
     const [rewards, setRewards] = useState<Reward[]>([]);
@@ -59,6 +60,13 @@ function App() {
         axios
             .put(`/api/rewards/${rewardToUpdate.id}/update`, rewardToUpdate)
             .then(() => getAllRewards())
+            .catch(() => console.error('update fail'))
+    }
+
+    function updateHabit(habitToUpdate: Habit) {
+        axios
+            .put(`/api/habits/${habitToUpdate.id}/update`, habitToUpdate)
+            .then(() => getAllHabits())
             .catch(() => console.error('update fail'))
     }
 
@@ -110,6 +118,7 @@ function App() {
                             element={<AddHabit addHabit={addHabit}/>}
                         />
                         <Route path='/habits/:id' element={<HabitDetail/>}/>
+                        <Route path='/habits/:id/update' element={<UpdateHabit updateHabit={updateHabit}/>}/>
                     </Routes>
                 </div>
             </div>
