@@ -21,8 +21,13 @@ export default function UpdateReward(props: UpdateRewardProps) {
     function onUpdateReward(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         const updatedReward: Reward = {
-            id: id, name: name, description: description, price: price,
-            savingAllocated: savingAllocated, statusOpen: statusOpen, rewardCreated: rewardCreated
+            id: id,
+            name: name,
+            description: description,
+            price: price,
+            savingAllocated: savingAllocated,
+            statusOpen: statusOpen,
+            rewardCreated: rewardCreated
         }
         props.updateReward(updatedReward);
         navigate('/')
@@ -51,7 +56,7 @@ export default function UpdateReward(props: UpdateRewardProps) {
                     }
                     }
                 />
-                {<TextField
+                <TextField
                     helperText="price of reward"
                     id="rewardPrice"
                     label="Price"
@@ -62,8 +67,8 @@ export default function UpdateReward(props: UpdateRewardProps) {
                         setPrice(value);
                     }
                     }
-                />}
-                <Button type="submit" key="RewardAddButton">update Reward</Button>
+                />
+                <Button type="submit" variant="outlined" key="RewardUpdateButton">update Reward</Button>
             </form>
         </div>)
 }
