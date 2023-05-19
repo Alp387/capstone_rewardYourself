@@ -12,6 +12,7 @@ import UpdateReward from "./UpdateReward";
 import HabitGallery from "./HabitGallery";
 import {Habit, NewHabit} from "./Habit";
 import AddHabit from "./AddHabit";
+import HabitDetail from "./HabitDetail";
 
 function App() {
     const [rewards, setRewards] = useState<Reward[]>([]);
@@ -108,11 +109,13 @@ function App() {
                             path="/habits/add"
                             element={<AddHabit addHabit={addHabit}/>}
                         />
+                        <Route path='/habits/:id' element={<HabitDetail/>}/>
                     </Routes>
                 </div>
             </div>
         </BrowserRouter>
-    );
+    )
+        ;
 }
 
 export default App;
