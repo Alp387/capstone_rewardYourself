@@ -11,7 +11,7 @@ export default function RewardCard(props: RewardCardProps) {
         <div className="reward-card">
 
             <p>{props.reward.name}; Progress: {props.reward.savingAllocated} / {props.reward.price}€
-            <Button size="small" onClick={() => {
+            <Button size="small" variant ="text" onClick={() => {
                 navigate('/rewards/' + props.reward.id)}}>
                      Details
             </Button>
