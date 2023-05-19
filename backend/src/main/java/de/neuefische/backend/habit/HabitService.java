@@ -17,7 +17,7 @@ public class HabitService {
         return habitRepoInterface.findAll();
     }
 
-    public Habit getById(String id){
+    public Habit getById(String id) {
         return habitRepoInterface.findById(id).orElseThrow();
     }
 
@@ -33,5 +33,18 @@ public class HabitService {
                 true
         );
         return habitRepoInterface.save(habitToAdd);
+    }
+
+    public Habit update(Habit updatedHabit) {
+        Habit updatedHabitToSave = new Habit(updatedHabit.id(),
+                updatedHabit.name(),
+                updatedHabit.description(),
+                updatedHabit.dailySaving(),
+                updatedHabit.startTime(),
+                updatedHabit.lastTimeCollected(),
+                updatedHabit.endTime(),
+                updatedHabit.statusOpen());
+
+        return habitRepoInterface.save(updatedHabitToSave);
     }
 }
