@@ -17,6 +17,10 @@ public class HabitService {
         return habitRepoInterface.findAll();
     }
 
+    public Habit getById(String id){
+        return habitRepoInterface.findById(id).orElseThrow();
+    }
+
     public Habit add(Habit habit) {
         Habit habitToAdd = new Habit(
                 habit.id(),
