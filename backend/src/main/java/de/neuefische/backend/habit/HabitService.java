@@ -47,4 +47,8 @@ public class HabitService {
 
         return habitRepoInterface.save(updatedHabitToSave);
     }
+
+    public void delete(String id) {
+        habitRepoInterface.deleteById(id);
+    }
 }
