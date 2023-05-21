@@ -21,7 +21,6 @@ export default function AddReward(props: AddRewardProps) {
 
     }
 
-
     return (
         <div>
             <form onSubmit={onSaveReward}>
@@ -45,7 +44,7 @@ export default function AddReward(props: AddRewardProps) {
                     }
                     }
                 />
-                {<TextField
+                <TextField
                     helperText="price of your reward"
                     id="rewardPrice"
                     label="Price"
@@ -54,9 +53,8 @@ export default function AddReward(props: AddRewardProps) {
                     onChange={(event) => {
                         const value = Number(event.target.value); // convert to a number
                         setPrice(value);
-                    }
-                    }
-                />}
+                    }}
+                />
                 <Button type="submit" key="RewardAddButton">Add Reward</Button>
             </form>
         </div>

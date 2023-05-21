@@ -1,8 +1,7 @@
 package de.neuefische.backend.reward;
 
-import org.junit.jupiter.api.BeforeEach;
+import de.neuefische.backend.utlis.TimeUtilsService;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
