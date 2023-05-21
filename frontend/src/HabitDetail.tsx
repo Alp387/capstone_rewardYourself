@@ -1,11 +1,13 @@
 import {useEffect, useState} from "react";
 import {Habit} from "./Habit";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
+import {Button} from "@mui/material";
 
 export default function HabitDetail() {
     const [habit, setHabit] = useState<Habit>();
     const {id} = useParams<{ id: string }>();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (id) {
@@ -27,6 +29,11 @@ export default function HabitDetail() {
         <div>
             {habit ? (
                 <div>
+                    <Button size="small" variant="outlined"
+                            onClick={() => navigate('/habits/' + habit.id + '/update',
+                                {state: habit})}>
+                        Update Habit
+                    </Button>
                     <h1>Name: {habit.name}</h1>
                     <p>Daily average saving: {habit.dailySaving}</p>
                     <p>Description: {habit.description}</p>
