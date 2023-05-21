@@ -37,4 +37,9 @@ public class HabitController {
                     "Habit with id -" + updatedHabit.id() + "- does not exist");
         }
     }
+
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable String id) {
+        habitService.delete(id);
+    }
 }

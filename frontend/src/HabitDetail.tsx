@@ -4,7 +4,11 @@ import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {Button} from "@mui/material";
 
-export default function HabitDetail() {
+type HabitDetailProps = {
+    deleteHabit: (id: string) => void
+}
+
+export default function HabitDetail(props: HabitDetailProps) {
     const [habit, setHabit] = useState<Habit>();
     const {id} = useParams<{ id: string }>();
     const navigate = useNavigate();
@@ -25,6 +29,14 @@ export default function HabitDetail() {
             })
     }
 
+    function onDeleteButtonClick() {
+        if (habit) {
+            props.deleteHabit(habit.id)
+        }
+        navigate('/')
+    }
+
+
     return (
         <div>
             {habit ? (
@@ -33,6 +45,10 @@ export default function HabitDetail() {
                             onClick={() => navigate('/habits/' + habit.id + '/update',
                                 {state: habit})}>
                         Update Habit
+                    </Button>
+                    <Button size="small" variant="outlined"
+                            onClick={() => onDeleteButtonClick()}>
+                        Delete Habit
                     </Button>
                     <h1>Name: {habit.name}</h1>
                     <p>Daily average saving: {habit.dailySaving}</p>

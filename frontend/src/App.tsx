@@ -77,6 +77,13 @@ function App() {
                 console.log("Failed to delete reward")
             })
     }
+    function deleteHabit (id: string) {
+        axios.delete('/api/habits/' + id)
+            .then(()=>getAllHabits())
+            .catch(()=>{
+                console.log("Failed to delete habit")
+            })
+    }
 
     return (
         <BrowserRouter>
@@ -117,7 +124,7 @@ function App() {
                             path="/habits/add"
                             element={<AddHabit addHabit={addHabit}/>}
                         />
-                        <Route path='/habits/:id' element={<HabitDetail/>}/>
+                        <Route path='/habits/:id' element={<HabitDetail deleteHabit={deleteHabit}/>}/>
                         <Route path='/habits/:id/update' element={<UpdateHabit updateHabit={updateHabit}/>}/>
                     </Routes>
                 </div>
