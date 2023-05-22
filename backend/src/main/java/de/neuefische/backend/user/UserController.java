@@ -12,4 +12,5 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public User getSingleUser() {return userService.getSingleUser();} }
+    public User getSingleUser() {return userService.getSingleUser();}
+}
