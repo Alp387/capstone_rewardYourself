@@ -19,4 +19,11 @@ public class UserService {
                         userToUpdate.name(),
                         userToUpdate.totalSaving() + amount));
     }
+
+    public void spendSaving(String userId, double spendingAmount) {
+        User userToUpdate = userRepoInterface.findById(userId).orElseThrow();
+        userRepoInterface.save(new User(userId,
+                userToUpdate.name(),
+                userToUpdate.totalSaving() - spendingAmount));
+    }
 }
