@@ -51,23 +51,22 @@ public class HabitService {
         return habitRepoInterface.save(updatedHabitToSave);
     }
 
-    public Habit collectSaving(Habit habit) {
+    public Habit collectSaving(String id) {
         OffsetDateTime currentTime = OffsetDateTime.now();
-        long timeDifference = currentTime.until(habit.startTime(), ChronoUnit.HOURS);
-
-        double savingToCollect = timeDifference * habit.dailySaving() / 24;
-
-        Habit updatedHabit = new Habit(habit.id(),
-                habit.name(),
-                habit.description(),
-                habit.dailySaving(),
-                habit.startTime(),
+        Habit habitCollect = habitRepoInterface.findById(id).orElseThrow();
+        long timeDifference = currentTime.until(habitCollect.startTime(), ChronoUnit.HOURS);
+        double savingToCollect = timeDifference * habitCollect.dailySaving() / 24;
+        Habit updatedHabit = new Habit(
+                habitCollect.id(),
+                habitCollect.name(),
+                habitCollect.description(),
+                habitCollect.dailySaving(),
+                habitCollect.startTime(),
                 currentTime,
-                habit.endTime(),
-                habit.statusOpen());
+                habitCollect.endTime(),
+                habitCollect.statusOpen());
         habitRepoInterface.save(updatedHabit);
         userService.updateTotalSaving("646b5f4616040952fa8a5b39", savingToCollect);
-
         return updatedHabit;
     }
 

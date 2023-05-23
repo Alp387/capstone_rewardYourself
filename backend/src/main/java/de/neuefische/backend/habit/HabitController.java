@@ -38,8 +38,8 @@ public class HabitController {
         }
     }
     @PutMapping(path = {"/{id}/collect","{id}"})
-    public Habit collectSaving (@PathVariable String id,@RequestBody Habit habit){
-        return habitService.collectSaving(habit);
+    public Habit collectSaving (@PathVariable String id){
+        return habitService.collectSaving(id);
     }
 
     @DeleteMapping("{id}")
