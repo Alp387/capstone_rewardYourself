@@ -31,7 +31,7 @@ public class HabitService {
                 habit.description(),
                 habit.dailySaving(),
                 timeutilsService.addNewTimeStamp(),
-                null, /* Initialwert startTime*/
+                timeutilsService.addNewTimeStamp(),
                 null,
                 true
         );
@@ -58,8 +58,8 @@ public class HabitService {
         System.out.println("Habit ID: " + habitCollect.id());
         System.out.println("Habit name: " + habitCollect.name());
         System.out.println("timeDifference: " + timeDifference);
-        double savingToCollect = timeDifference * habitCollect.dailySaving() / 24/60;
-        System.out.println("saving by minute: " + habitCollect.dailySaving()/24/60);
+        double savingToCollect = timeDifference * habitCollect.dailySaving() / 24 / 60;
+        System.out.println("saving by minute: " + habitCollect.dailySaving() / 24 / 60);
         System.out.println("savingToCollect: " + savingToCollect);
         Habit updatedHabit = new Habit(
                 habitCollect.id(),
