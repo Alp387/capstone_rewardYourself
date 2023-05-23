@@ -37,6 +37,10 @@ public class HabitController {
                     "Habit with id -" + updatedHabit.id() + "- does not exist");
         }
     }
+    @PutMapping(path = {"/{id}/collect","{id}"})
+    public Habit collectSaving (@PathVariable String id,@RequestBody Habit habit){
+        return habitService.collectSaving(habit);
+    }
 
     @DeleteMapping("{id}")
     public void delete(@PathVariable String id) {
