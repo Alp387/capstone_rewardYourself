@@ -1,9 +1,12 @@
 package de.neuefische.backend.habit;
 
+import de.neuefische.backend.user.UserService;
 import de.neuefische.backend.utlis.TimeUtilsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.OffsetDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -11,7 +14,7 @@ import java.util.List;
 public class HabitService {
     private final HabitRepoInterface habitRepoInterface;
     private final TimeUtilsService timeutilsService;
-
+    private final UserService userService;
 
     public List<Habit> getAll() {
         return habitRepoInterface.findAll();
@@ -28,7 +31,7 @@ public class HabitService {
                 habit.description(),
                 habit.dailySaving(),
                 timeutilsService.addNewTimeStamp(),
-                null,
+                timeutilsService.addNewTimeStamp(),
                 null,
                 true
         );
@@ -46,6 +49,25 @@ public class HabitService {
                 updatedHabit.statusOpen());
 
         return habitRepoInterface.save(updatedHabitToSave);
+    }
+
+    public Habit collectSaving(String id) {
+        OffsetDateTime currentTime = OffsetDateTime.now();
+        Habit habitCollect = habitRepoInterface.findById(id).orElseThrow();
+        long timeDifference = habitCollect.lastTimeCollected().until(currentTime, ChronoUnit.MINUTES);
+        double savingToCollect = timeDifference * habitCollect.dailySaving() / 24 / 60;
+        Habit updatedHabit = new Habit(
+                habitCollect.id(),
+                habitCollect.name(),
+                habitCollect.description(),
+                habitCollect.dailySaving(),
+                habitCollect.startTime(),
+                currentTime,
+                habitCollect.endTime(),
+                habitCollect.statusOpen());
+        habitRepoInterface.save(updatedHabit);
+        userService.updateTotalSaving("646b5f4616040952fa8a5b39", savingToCollect);
+        return updatedHabit;
     }
 
     public void delete(String id) {

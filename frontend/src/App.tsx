@@ -34,7 +34,25 @@ function App() {
                 console.error(error);
             });
     }
-
+    function addReward(newReward: NewReward) {
+        axios
+            .post('/api/rewards/add', newReward)
+            .then(() => getAllRewards())
+            .catch(() => console.error('post fail'));
+    }
+    function updateReward(rewardToUpdate: Reward) {
+        axios
+            .put(`/api/rewards/${rewardToUpdate.id}/update`, rewardToUpdate)
+            .then(() => getAllRewards())
+            .catch(() => console.error('update fail'))
+    }
+    function deleteReward(id: string) {
+        axios.delete('/api/rewards/' + id)
+            .then(() => getAllRewards())
+            .catch(() => {
+                console.log("Failed to delete reward")
+            })
+    }
     function getAllHabits() {
         axios.get('/api/habits').then((response: AxiosResponse<any>) => {
             setHabits(response.data);
@@ -43,12 +61,7 @@ function App() {
         })
     }
 
-    function addReward(newReward: NewReward) {
-        axios
-            .post('/api/rewards/add', newReward)
-            .then(() => getAllRewards())
-            .catch(() => console.error('post fail'));
-    }
+
 
     function addHabit(newHabit: NewHabit) {
         axios.post('/api/habits/add', newHabit)
@@ -56,12 +69,7 @@ function App() {
             .catch(() => console.error('post fail'));
     }
 
-    function updateReward(rewardToUpdate: Reward) {
-        axios
-            .put(`/api/rewards/${rewardToUpdate.id}/update`, rewardToUpdate)
-            .then(() => getAllRewards())
-            .catch(() => console.error('update fail'))
-    }
+
 
     function updateHabit(habitToUpdate: Habit) {
         axios
@@ -70,13 +78,7 @@ function App() {
             .catch(() => console.error('update fail'))
     }
 
-    function deleteReward(id: string) {
-        axios.delete('/api/rewards/' + id)
-            .then(() => getAllRewards())
-            .catch(() => {
-                console.log("Failed to delete reward")
-            })
-    }
+
     function deleteHabit (id: string) {
         axios.delete('/api/habits/' + id)
             .then(()=>getAllHabits())
@@ -110,7 +112,7 @@ function App() {
                                         </Button>
                                     </div>
                                     <RewardGallery rewards={rewards}/>
-                                    <HabitGallery habits={habits}/>
+                                    <HabitGallery habits={habits} />
                                 </>
                             }
                         />
