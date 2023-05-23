@@ -55,12 +55,7 @@ public class HabitService {
         OffsetDateTime currentTime = OffsetDateTime.now();
         Habit habitCollect = habitRepoInterface.findById(id).orElseThrow();
         long timeDifference = habitCollect.lastTimeCollected().until(currentTime, ChronoUnit.MINUTES);
-        System.out.println("Habit ID: " + habitCollect.id());
-        System.out.println("Habit name: " + habitCollect.name());
-        System.out.println("timeDifference: " + timeDifference);
         double savingToCollect = timeDifference * habitCollect.dailySaving() / 24 / 60;
-        System.out.println("saving by minute: " + habitCollect.dailySaving() / 24 / 60);
-        System.out.println("savingToCollect: " + savingToCollect);
         Habit updatedHabit = new Habit(
                 habitCollect.id(),
                 habitCollect.name(),
