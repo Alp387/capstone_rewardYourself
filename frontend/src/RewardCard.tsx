@@ -11,10 +11,18 @@ export default function RewardCard(props: RewardCardProps) {
         <div className="reward-card">
 
             <p>{props.reward.name}; Progress: {props.reward.savingAllocated} / {props.reward.price}€
-            <Button size="small" variant ="text" onClick={() => {
-                navigate('/rewards/' + props.reward.id)}}>
-                     Details
-            </Button>
+                <Button size="small" variant="text" onClick={() => {
+                    navigate('/rewards/' + props.reward.id)
+                }}>
+                    Details
+                </Button>
+
+                <Button size="small" variant="text" onClick={() => {
+                    navigate('/rewards/' + props.reward.id + '/spend',{state:props.reward})
+                }}>
+                    Spend Saving
+                </Button>
+
             </p>
         </div>
     )
