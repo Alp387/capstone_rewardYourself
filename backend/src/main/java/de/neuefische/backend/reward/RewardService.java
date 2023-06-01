@@ -49,7 +49,7 @@ public class RewardService {
 
     public Reward spendSaving(String id, double spendingAmount) {
         Reward oldReward = rewardRepoInterface.findById(id).orElseThrow();
-                userService.spendSaving("646b5f4616040952fa8a5b39",spendingAmount);
+                userService.spendSaving("6477a4b984a906988b45ffce",spendingAmount);
         return  rewardRepoInterface.save(new Reward(
                         id,
                         oldReward.name(),

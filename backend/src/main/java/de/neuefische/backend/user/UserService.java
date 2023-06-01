@@ -9,7 +9,7 @@ public class UserService {
     private final UserRepoInterface userRepoInterface;
 
     public User getSingleUser() {
-        return userRepoInterface.findById("646b5f4616040952fa8a5b39").orElseThrow();
+        return userRepoInterface.findById("6477a4b984a906988b45ffce").orElseThrow();
     }
 
     public void updateTotalSaving(String userId, double amount) {
