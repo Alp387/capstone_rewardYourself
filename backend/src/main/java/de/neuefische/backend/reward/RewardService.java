@@ -1,5 +1,6 @@
 package de.neuefische.backend.reward;
 
+import de.neuefische.backend.user.UserService;
 import de.neuefische.backend.utlis.TimeUtilsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import java.util.List;
 public class RewardService {
     private final RewardRepoInterface rewardRepoInterface;
     private final TimeUtilsService timeUtilsService;
+    private final UserService userService;
 
     public List<Reward> getAll() {
         return rewardRepoInterface.findAll();
@@ -44,4 +46,17 @@ public class RewardService {
         return rewardRepoInterface.save(updatedRewardToSave);
     }
     public void delete(String id){ rewardRepoInterface.deleteById(id);}
+
+    public Reward spendSaving(String id, double spendingAmount) {
+        Reward oldReward = rewardRepoInterface.findById(id).orElseThrow();
+                userService.spendSaving("6477a4b984a906988b45ffce",spendingAmount);
+        return  rewardRepoInterface.save(new Reward(
+                        id,
+                        oldReward.name(),
+                        oldReward.description(),
+                        oldReward.price(),
+                        oldReward.savingAllocated() + spendingAmount,
+                        oldReward.statusOpen(),
+                        oldReward.rewardCreated()));
+    }
 }

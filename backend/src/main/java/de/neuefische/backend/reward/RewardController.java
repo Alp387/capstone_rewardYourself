@@ -39,6 +39,11 @@ public class RewardController {
         }
     }
 
+    @PutMapping(path = {"/{id}/spend", "{id}"})
+    public Reward spendSaving(@PathVariable String id, @RequestBody double spendingAmount) {
+        return rewardService.spendSaving(id, spendingAmount);
+    }
+
     @DeleteMapping("{id}")
     public void deleteReward(@PathVariable String id) {
         rewardService.delete(id);

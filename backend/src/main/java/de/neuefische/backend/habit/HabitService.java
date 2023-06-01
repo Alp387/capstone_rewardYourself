@@ -66,7 +66,7 @@ public class HabitService {
                 habitCollect.endTime(),
                 habitCollect.statusOpen());
         habitRepoInterface.save(updatedHabit);
-        userService.updateTotalSaving("646b5f4616040952fa8a5b39", savingToCollect);
+        userService.updateTotalSaving("6477a4b984a906988b45ffce", savingToCollect);
         return updatedHabit;
     }
 
