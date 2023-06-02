@@ -1,6 +1,5 @@
 .habit-card{
-    width: 390px;
-    height: 150px;
+    width: 90%;
     background-color: beige;
     display: flex;
     flex-direction: row;
