@@ -42,7 +42,7 @@ export default function RewardDetail(props: RewardDetailProps) {
                     }}>
                         Update Reward
                     </Button>
-                    <Button size="small" onClick={() => onDeleteButtonClick()}>
+                    <Button size="small" color="warning" onClick={() => onDeleteButtonClick()}>
                         Delete Reward
                     </Button>
                     <h1>Name: {reward.name}</h1>

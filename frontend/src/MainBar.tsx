@@ -1,11 +1,12 @@
-import { Button, Stack } from "@mui/material";
-import { useEffect, useState } from "react";
-import { User } from "./User";
+import {Button, Stack} from "@mui/material";
+import {useEffect, useState} from "react";
+import {User} from "./User";
 import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
+import "./MainBar.css"
 
 export default function MainBar() {
-    const [user, setUser] = useState<User>({ id: "", name: "", totalSaving: -1 });
+    const [user, setUser] = useState<User>({id: "", name: "", totalSaving: -1});
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -31,17 +32,15 @@ export default function MainBar() {
     }, [location]);
 
     return (
-        <div className="MainBar">
-            <Stack justifyContent="space-between" direction="row">
-                <Button size="small" variant="contained" href="/">
-                    Home
-                </Button>
-                {user && (
-                    <p>
-                        {user.name} - Total Saving: {user.totalSaving.toFixed(2)}
-                    </p>
-                )}
-            </Stack>
+        <div className="main-bar">
+
+            <div className="home-button"><Button size="small" variant="contained" href="/">
+                Home
+            </Button></div>
+            <div className="user-overview"> {user && (
+                <p>{user.name} - Total Saving: {user.totalSaving.toFixed(2)}</p>
+            )}</div>
+
         </div>
     );
 }

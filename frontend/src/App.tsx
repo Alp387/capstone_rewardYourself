@@ -104,8 +104,8 @@ function App() {
     return (
         <BrowserRouter>
             <div className="App">
-                <MainBar/>
-                <div className='content'>
+                <div className="main-bar"> <MainBar/></div>
+                <div className='app-header'>
                     <Routes>
                         <Route
                             path='/'

@@ -1,0 +1,7 @@
+.reward-card{
+    width: 90%;
+    background-color: bisque;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

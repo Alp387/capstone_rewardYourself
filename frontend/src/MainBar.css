@@ -1,0 +1,22 @@
+.main-bar {
+    min-height: 2vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: black;
+}
+
+.home-button {
+    text-align: left;
+    min-height: 2vh;
+    font-size: calc(8px + 1vmin);
+}
+
+.user-overview {
+    text-align: left;
+    min-height: 2vh;
+    background-color:aquamarine;
+    font-size: calc(8px + 1vmin);
+}

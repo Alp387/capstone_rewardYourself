@@ -1,0 +1,8 @@
+.habit-card{
+    width: 390px;
+    height: 150px;
+    background-color: beige;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

@@ -46,7 +46,7 @@ export default function HabitDetail(props: HabitDetailProps) {
                                 {state: habit})}>
                         Update Habit
                     </Button>
-                    <Button size="small" variant="outlined"
+                    <Button size="small" variant="outlined" color="warning"
                             onClick={() => onDeleteButtonClick()}>
                         Delete Habit
                     </Button>
