@@ -1,14 +1,9 @@
 .main-bar {
+    width: 90%;
     min-height: 2vh;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: center; /* Align items vertically in the center */
+    justify-content: space-around; /* Distribute items evenly along the main axis */
     font-size: calc(10px + 2vmin);
     color: black;
-}
-
-.user-overview {
-    display: flex;
-    align-items: center;
-    font-size: calc(8px + 1vmin);
 }

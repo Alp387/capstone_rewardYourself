@@ -1,13 +1,13 @@
-import { Avatar, Button } from "@mui/material";
-import { useEffect, useState } from "react";
-import { User } from "./User";
+import {Avatar, Button} from "@mui/material";
+import {useEffect, useState} from "react";
+import {User} from "./User";
 import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import "./MainBar.css";
 
 export default function MainBar() {
-    const [user, setUser] = useState<User>({ id: "", name: "", totalSaving: -1 });
+    const [user, setUser] = useState<User>({id: "", name: "", totalSaving: -1});
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -43,22 +43,25 @@ export default function MainBar() {
 
     return (
         <div className="main-bar">
-            <div className="home-button">
-                <Button
-                    size="small"
-                    variant="contained"
-                    startIcon={<HomeIcon />}
-                    href="/"
-                ></Button>
-            </div>
-            <div className="user-overview">
+            <Button
+                size="small"
+                variant="contained"
+                startIcon={<HomeIcon/>}
+                href="/"
+                className="home-button"
+            ></Button>
+
                 {user && (
                     <p>
-                        <Avatar>{getInitials(user.name)}</Avatar> Total Saving:{" "}
+                        <Avatar>{getInitials(user.name)}</Avatar>
+                    </p>
+                )}
+                {user && (
+                    <p>
+                        Total Saving:{" "}
                         {user.totalSaving.toFixed(2)}
                     </p>
                 )}
-            </div>
         </div>
     );
 }
