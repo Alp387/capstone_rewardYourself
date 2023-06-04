@@ -29,7 +29,7 @@ export default function HabitCard(props: HabitCardProps) {
 
     return (
         <Card className="habit-card">
-            <CardContent sx={{display: "flex", alignItems: "center", maxWidth: "sm", maxHeight: "sm"}}>
+            <CardContent sx={{display: "flex", alignItems: "center", maxWidth: "sm", maxHeight: "sm",flexDirection:"column"}}>
                 <Typography>
                     {props.habit.name}
                 </Typography>

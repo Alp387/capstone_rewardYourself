@@ -1,5 +1,7 @@
 .reward-gallery {
     display: flex;
+    width: 90%;
+    max-width: 600px;
     flex-direction: row;
     flex-wrap: wrap;
     height: 100%;

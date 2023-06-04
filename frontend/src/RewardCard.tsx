@@ -10,7 +10,7 @@ export default function RewardCard(props: RewardCardProps) {
     const navigate = useNavigate()
     return (
         <Card className="reward-card">
-            <CardContent sx={{display: "flex", alignItems: "center", maxWidth: "sm", maxHeight: "sm"}}>
+            <CardContent sx={{display: "flex", alignItems: "center", maxWidth: "sm", maxHeight: "sm",flexDirection:"column"}}>
                 <Typography>
                     {props.reward.name}
                 </Typography>
