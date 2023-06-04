@@ -1,5 +1,6 @@
 .main-bar {
     width: 90%;
+    max-width: 600px;
     min-height: 2vh;
     display: flex;
     align-items: center; /* Align items vertically in the center */
