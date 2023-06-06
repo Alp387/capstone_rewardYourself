@@ -1,0 +1,10 @@
+.main-bar {
+    width: 90%;
+    max-width: 600px;
+    min-height: 2vh;
+    display: flex;
+    align-items: center; /* Align items vertically in the center */
+    justify-content: space-around; /* Distribute items evenly along the main axis */
+    font-size: calc(1px + 2vmin);
+    color: black;
+}

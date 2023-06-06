@@ -1,0 +1,7 @@
+.update-habit {
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}

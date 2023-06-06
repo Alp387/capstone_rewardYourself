@@ -1,22 +1,19 @@
 .App {
+  width:90%;
+  max-width: 600px;
   text-align: left;
-  background-color: #282c34;
   min-height: 2vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: left;
-  font-size: calc(8px + 1vmin);
-  color: white;
+  font-size: calc(7px + 1vmin);
+  color: black;
 }
 
-.App-header {
-  background-color: #282c34;
+.button-container {
   min-height: 2vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }

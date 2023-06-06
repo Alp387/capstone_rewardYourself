@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {Reward} from "./Reward";
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
-import {Button} from "@mui/material";
+import {Button, Card, CardContent, Typography} from "@mui/material";
 
 type RewardDetailProps = {
     deleteReward: (id: string) => void
@@ -34,23 +34,29 @@ export default function RewardDetail(props: RewardDetailProps) {
     }
 
     return (
-        <div>
-            {reward ? (
-                <div>
-                    <Button size="small" onClick={() => {
-                        navigate('/rewards/' + reward.id + '/update', {state: reward})
-                    }}>
-                        Update Reward
-                    </Button>
-                    <Button size="small" onClick={() => onDeleteButtonClick()}>
-                        Delete Reward
-                    </Button>
-                    <h1>Name: {reward.name}</h1>
-                    <p>Description: {reward.description}</p>
-                    <p>Price: {reward.price}</p>
-                    <p>Savings allocated: {reward.savingAllocated}</p>
-                    <p>Reward created: {`${reward.rewardCreated}`}</p>
-                </div>) : (<p>Reward not found</p>)}
-        </div>
+        <Card>
+            <CardContent sx={{
+                display: "flex", alignItems: "center", maxWidth: "sm", maxHeight: "sm",
+                flexDirection: "column", backgroundColor: "beige"
+            }}>
+                {reward ? (
+                    <div >
+
+                        <h2>{reward.name}</h2>
+                        <Typography>Description: {reward.description}</Typography>
+                        <Typography>Price: {reward.price}</Typography>
+                        <Typography>Savings allocated: {reward.savingAllocated}</Typography>
+                        <Typography>Reward created: {`${reward.rewardCreated}`}</Typography>
+                        <Button size="small" onClick={() => {
+                            navigate('/rewards/' + reward.id + '/update', {state: reward})
+                        }}>
+                            Update Reward
+                        </Button>
+                        <Button size="small" color="warning" onClick={() => onDeleteButtonClick()}>
+                            Delete Reward
+                        </Button>
+                    </div>) : (<p>Reward not found</p>)}
+            </CardContent>
+        </Card>
     )
 }
