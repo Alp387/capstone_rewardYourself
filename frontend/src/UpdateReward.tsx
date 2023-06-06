@@ -2,6 +2,7 @@ import {Button, TextField} from "@mui/material";
 import {Reward} from "./Reward";
 import {FormEvent, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
+import "./UpdateReward.css"
 
 type UpdateRewardProps = {
     updateReward: (updatedReward: Reward) => void
@@ -35,11 +36,10 @@ export default function UpdateReward(props: UpdateRewardProps) {
 
     return (
         <div>
-            <form onSubmit={onUpdateReward}>
+            <form className="update-reward" onSubmit={onUpdateReward}>
                 <TextField
-                    helperText="name of reward"
                     id="rewardName"
-                    label="Name"
+                    label="name"
                     value={name}
                     onChange={(event) => {
                         setName(event.target.value)
@@ -47,9 +47,8 @@ export default function UpdateReward(props: UpdateRewardProps) {
                     }
                 />
                 <TextField
-                    helperText="description of reward"
                     id="rewardDescription"
-                    label="Description"
+                    label="description"
                     value={description}
                     onChange={(event) => {
                         setDescription(event.target.value)
@@ -57,9 +56,8 @@ export default function UpdateReward(props: UpdateRewardProps) {
                     }
                 />
                 <TextField
-                    helperText="price of reward"
                     id="rewardPrice"
-                    label="Price"
+                    label="price"
                     type="number"
                     value={price}
                     onChange={(event) => {
@@ -68,7 +66,7 @@ export default function UpdateReward(props: UpdateRewardProps) {
                     }
                     }
                 />
-                <Button type="submit" variant="outlined" key="RewardUpdateButton">update Reward</Button>
+                <Button type="submit" variant="contained" key="RewardUpdateButton">update Reward</Button>
             </form>
         </div>)
 }

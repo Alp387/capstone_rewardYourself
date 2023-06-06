@@ -2,6 +2,7 @@ import {Habit} from "./Habit";
 import {useLocation, useNavigate} from "react-router-dom";
 import {FormEvent, useState} from "react";
 import {Button, TextField} from "@mui/material";
+import "./UpdateHabit.css"
 
 type UpdateHabitProps = {
     updateHabit: (updatedHabit: Habit) => void
@@ -37,11 +38,10 @@ export default function UpdateHabit(props: UpdateHabitProps) {
 
     return (
         <div>
-            <form onSubmit={onUpdateHabit}>
+            <form className="update-habit" onSubmit={onUpdateHabit}>
                 <TextField
-                    helperText="name of habit"
                     id="habitName"
-                    label="Name"
+                    label="name"
                     value={name}
                     onChange={(event) => {
                         setName(event.target.value)
@@ -49,28 +49,26 @@ export default function UpdateHabit(props: UpdateHabitProps) {
                     }
                 />
                 <TextField
-                    helperText="daily average saving"
-                    id="habitSaving"
-                    label="Saving"
-                    type="number"
-                    value={dailySaving}
-                    onChange={(event) => {
-                        const value = Number(event.target.value);
-                        setDailySaving(value);
-                    }
-                    }
-                />
-                <TextField
-                    helperText="description of habit"
                     id="habitDescription"
-                    label="Description"
+                    label="description"
                     value={description}
                     onChange={(event) => {
                         setDescription(event.target.value)
                     }
                     }
                 />
-                <Button type="submit" variant="outlined" key="HabitUpdateButton">update Habit</Button>
+                <TextField
+                id="habitSaving"
+                label="daily saving"
+                type="number"
+                value={dailySaving}
+                onChange={(event) => {
+                    const value = Number(event.target.value);
+                    setDailySaving(value);
+                }
+                }
+            />
+                <Button type="submit" variant="contained" key="HabitUpdateButton">update Habit</Button>
             </form>
         </div>
     )
