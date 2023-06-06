@@ -1,6 +1,7 @@
 import {Button, TextField} from "@mui/material";
 import {FormEvent, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
+import "./SpendSaving.css"
 
 type SpendSavingProps = {
     spendSaving: (id:string,spendingAmount:number) => void
@@ -18,10 +19,10 @@ export default function SpendSaving(props: SpendSavingProps) {
     }
 
     return (
-        <div>
+        <div className="spend-saving">
             <form onSubmit={onSpendSaving}>
                 <TextField
-                    helperText="amount of spending"
+                    label="amount of spending"
                     id="spendingAmount"
                     type="number"
                     value={spendingAmount}

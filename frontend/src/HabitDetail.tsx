@@ -2,7 +2,8 @@ import {useEffect, useState} from "react";
 import {Habit} from "./Habit";
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
-import {Button} from "@mui/material";
+import {Button, Card, CardContent, Typography} from "@mui/material";
+
 
 type HabitDetailProps = {
     deleteHabit: (id: string) => void
@@ -38,24 +39,28 @@ export default function HabitDetail(props: HabitDetailProps) {
 
 
     return (
-        <div>
-            {habit ? (
-                <div>
-                    <Button size="small" variant="outlined"
-                            onClick={() => navigate('/habits/' + habit.id + '/update',
-                                {state: habit})}>
-                        Update Habit
-                    </Button>
-                    <Button size="small" variant="outlined"
-                            onClick={() => onDeleteButtonClick()}>
-                        Delete Habit
-                    </Button>
-                    <h1>Name: {habit.name}</h1>
-                    <p>Daily average saving: {habit.dailySaving}</p>
-                    <p>Description: {habit.description}</p>
-                    <p>Start DateTime: {` ${habit.startTime}`}</p>
-                </div>) : (<p>Habit not found</p>)
-            }
-        </div>
+        <Card>
+            <CardContent sx={{
+                display: "flex", alignItems: "center", maxWidth: "sm", maxHeight: "sm",
+                flexDirection: "column", backgroundColor: "bisque"
+            }}>
+                {habit ? (
+                    <div>
+                        <h2>{habit.name}</h2>
+                        <Typography>Daily average saving: {habit.dailySaving}</Typography>
+                        <Typography>Description: {habit.description}</Typography>
+                        <Typography>Start DateTime: {` ${habit.startTime}`}</Typography>
+                        <Button size="small"
+                                onClick={() => navigate('/habits/' + habit.id + '/update',
+                                    {state: habit})}>
+                            Update Habit
+                        </Button>
+                        <Button size="small" color="warning"
+                                onClick={() => onDeleteButtonClick()}>
+                            Delete Habit
+                        </Button>
+                    </div>) : (<p>Habit not found</p>)
+                }</CardContent>
+        </Card>
     )
 }

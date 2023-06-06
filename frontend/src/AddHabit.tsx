@@ -2,6 +2,7 @@ import {FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {NewHabit} from "./Habit";
 import {Button, TextField} from "@mui/material";
+import "./AddHabit.css"
 
 type AddHabitProps = {
     addHabit: (newHabit: NewHabit) => void
@@ -22,9 +23,8 @@ export default function AddHabit(props: AddHabitProps) {
 
     return (
         <div>
-            <form onSubmit={onSaveHabit}>
+            <form className="form-addHabit" onSubmit={onSaveHabit}>
                 <TextField
-                    helperText="name of your habit"
                     id="habitName"
                     label="Name"
                     value={name}
@@ -33,7 +33,6 @@ export default function AddHabit(props: AddHabitProps) {
                     }}
                 />
                 <TextField
-                    helperText="describe the habit"
                     id="habitDescription"
                     label="Description"
                     value={description}
@@ -42,7 +41,6 @@ export default function AddHabit(props: AddHabitProps) {
                     }}
                 />
                 <TextField
-                    helperText="daily saving"
                     id="habitDailySaving"
                     label="Daily saving"
                     value={dailySaving}
@@ -51,7 +49,7 @@ export default function AddHabit(props: AddHabitProps) {
                         setDailySaving(value)
                     }}
                 />
-                <Button type="submit" key="HabitAddButton"> Add Habit</Button>
+                <Button type="submit" key="HabitAddButton" variant="contained"> Add Habit</Button>
             </form>
         </div>
     )
