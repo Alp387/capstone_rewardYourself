@@ -1,5 +1,6 @@
 package de.neuefische.backend.reward;
 
+import de.neuefische.backend.user.UserService;
 import de.neuefische.backend.utlis.TimeUtilsService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,11 +29,13 @@ class RewardServiceTest {
     private RewardRepoInterface rewardRepoInterfaceMock;
     @Mock
     private TimeUtilsService timeUtilsService;
+    @Mock
+    private UserService userService;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        rewardService = new RewardService(rewardRepoInterfaceMock, timeUtilsService);
+        rewardService = new RewardService(rewardRepoInterfaceMock, timeUtilsService, userService);
     }
 
 
