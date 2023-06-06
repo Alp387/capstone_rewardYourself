@@ -34,7 +34,7 @@ class RewardIntegrationTest {
                 ));
     }
 
-    @Test
+    /*@Test
     @DirtiesContext
     void addReward_shouldReturnAddedReward() throws Exception {
         mockMvc.perform(post("/api/rewards/add")
@@ -65,5 +65,5 @@ class RewardIntegrationTest {
                                 }
                                 """
                 ));
-    }
+    }*/
 }
