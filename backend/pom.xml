@@ -52,7 +52,7 @@
     </dependencies>
     <packaging>jar</packaging>
     <build>
-        <finalName>rewardYourself</finalName>
+        <finalName>rewardyourself</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
