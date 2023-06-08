@@ -1,5 +1,6 @@
 FROM openjdk:19
 ENV ENVIRONMENT=prod
 LABEL maintainer="hasan.a.guerbuez@gmail.com"
-ADD backend/target/rewardYourself.jar rewardYourself.jar
-CMD [ "sh", "-c", "java -jar /rewardYourself.jar" ]
+EXPOSE 8080
+ADD backend/target/rewardyourself.jar rewardyourself.jar
+CMD [ "sh", "-c", "java -jar /rewardyourself.jar" ]
