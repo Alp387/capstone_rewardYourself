@@ -1,6 +1,6 @@
 import {Habit} from "./Habit";
 import {Button, Card, CardContent, Typography} from "@mui/material";
-import {useNavigate, useLocation} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import "./HabitCard.css"
 
@@ -10,7 +10,6 @@ type HabitCardProps = {
 
 export default function HabitCard(props: HabitCardProps) {
     const navigate = useNavigate();
-    const location = useLocation();
 
     function calculateTimeDifference(oldTimestamp: Date) {
         return Math.round(

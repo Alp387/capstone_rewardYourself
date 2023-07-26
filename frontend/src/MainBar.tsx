@@ -2,13 +2,12 @@ import {Avatar, Button} from "@mui/material";
 import {useEffect, useState} from "react";
 import {User} from "./User";
 import axios from "axios";
-import {useNavigate, useLocation} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import "./MainBar.css";
 
 export default function MainBar() {
     const [user, setUser] = useState<User>({id: "", name: "", totalSaving: -1});
-    const navigate = useNavigate();
     const location = useLocation();
 
     useEffect(() => {
