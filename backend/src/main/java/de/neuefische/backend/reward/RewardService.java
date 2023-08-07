@@ -1,6 +1,6 @@
 package de.neuefische.backend.reward;
 
-import de.neuefische.backend.user.UserService;
+import de.neuefische.backend.security.MongoUserService;
 import de.neuefische.backend.utlis.TimeUtilsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import java.util.List;
 public class RewardService {
     private final RewardRepoInterface rewardRepoInterface;
     private final TimeUtilsService timeUtilsService;
-    private final UserService userService;
+    private final MongoUserService mongoUserService;
 
     public List<Reward> getAll() {
         return rewardRepoInterface.findAll();
@@ -49,7 +49,7 @@ public class RewardService {
 
     public Reward spendSaving(String id, double spendingAmount) {
         Reward oldReward = rewardRepoInterface.findById(id).orElseThrow();
-                userService.spendSaving("6477a4b984a906988b45ffce",spendingAmount);
+                mongoUserService.spendSaving("6477a4b984a906988b45ffce",spendingAmount);
         return  rewardRepoInterface.save(new Reward(
                         id,
                         oldReward.name(),

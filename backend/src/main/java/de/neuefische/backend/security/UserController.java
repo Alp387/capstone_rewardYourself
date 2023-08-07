@@ -13,19 +13,20 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserService userService;
+    private final MongoUserService mongoUserService;
     private final MongoUserRepoInterface mongoUserRepoInterface;
+
     private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/me")
     public MongoUser getMyUserData(Authentication authentication) {
         String username = authentication.getName();
-        return userService.findUserByUsername(username);
+        return mongoUserService.findMongoUserByUsername(username);
     }
 
-    @GetMapping("/{username]")
+    @GetMapping("/{username}")
     public MongoUser loadMongoUserByName(@PathVariable String username) {
-        return userService.findUserByUsername(username);
+        return mongoUserService.findMongoUserByUsername(username);
     }
 
     @PostMapping("/login")
@@ -33,7 +34,7 @@ public class UserController {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/logout")
     public void logout(HttpSession httpSession) {
         httpSession.invalidate();
         SecurityContextHolder.clearContext();

@@ -1,6 +1,6 @@
 package de.neuefische.backend.habit;
 
-import de.neuefische.backend.user.UserService;
+import de.neuefische.backend.security.MongoUserService;
 import de.neuefische.backend.utlis.TimeUtilsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.util.List;
 public class HabitService {
     private final HabitRepoInterface habitRepoInterface;
     private final TimeUtilsService timeutilsService;
-    private final UserService userService;
+    private final MongoUserService mongoUserService;
 
     public List<Habit> getAll() {
         return habitRepoInterface.findAll();
@@ -66,7 +66,7 @@ public class HabitService {
                 habitCollect.endTime(),
                 habitCollect.statusOpen());
         habitRepoInterface.save(updatedHabit);
-        userService.updateTotalSaving("6477a4b984a906988b45ffce", savingToCollect);
+        mongoUserService.updateTotalSaving("6477a4b984a906988b45ffce", savingToCollect);
         return updatedHabit;
     }
 

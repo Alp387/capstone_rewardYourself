@@ -7,7 +7,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import "./MainBar.css";
 
 export default function MainBar() {
-    const [user, setUser] = useState<User>({id: "", name: "", totalSaving: -1});
+    const [user, setUser] = useState<User>({id: "", username: "",password:"", totalSaving: -1});
     const location = useLocation();
 
     useEffect(() => {
@@ -52,7 +52,7 @@ export default function MainBar() {
 
                 {user && (
                     <p>
-                        <Avatar>{getInitials(user.name)}</Avatar>
+                        <Avatar>{getInitials(user.username)}</Avatar>
                     </p>
                 )}
                 {user && (

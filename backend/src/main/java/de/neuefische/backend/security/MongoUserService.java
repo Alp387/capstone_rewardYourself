@@ -31,4 +31,19 @@ public class MongoUserService implements UserDetailsService {
     public MongoUser getAuthenticatedUser() {
         return findMongoUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
     }
+
+    public void updateTotalSaving(String userId, double amount) {
+        MongoUser userToUpdate = mongoUserRepoInterface.findById(userId).orElseThrow();
+        mongoUserRepoInterface.save
+                (new MongoUser(userId,
+                        userToUpdate.username(), userToUpdate.password(),
+                        userToUpdate.totalSaving() + amount));
+    }
+
+    public void spendSaving(String userId, double spendingAmount) {
+        MongoUser userToUpdate = mongoUserRepoInterface.findById(userId).orElseThrow();
+        mongoUserRepoInterface.save(new MongoUser(userId,
+                userToUpdate.username(), userToUpdate.password(),
+                userToUpdate.totalSaving() - spendingAmount));
+    }
 }
